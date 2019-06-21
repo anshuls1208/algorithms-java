@@ -24,28 +24,32 @@ public class LRUCache {
         cacheUsingQueue.touch(3);
         cacheUsingQueue.touch(4);
         cacheUsingQueue.print();
-        System.out.println("LRU element: " + cacheUsingQueue.peekLRU());
+        System.out.println("LRU node: " + cacheUsingQueue.peekLRU());
+        System.out.println("MRU node: " + cacheUsingQueue.peekMRU() + "\n");
 
         cacheUsingQueue.touch(2);
         cacheUsingQueue.print();
-        System.out.println("LRU element: " + cacheUsingQueue.peekLRU());
+        System.out.println("LRU node: " + cacheUsingQueue.peekLRU());
+        System.out.println("MRU node: " + cacheUsingQueue.peekMRU() + "\n");
 
         cacheUsingQueue.touch(5);
         cacheUsingQueue.touch(6);
         cacheUsingQueue.print();
-        System.out.println("LRU element: " + cacheUsingQueue.peekLRU());
+        System.out.println("LRU node: " + cacheUsingQueue.peekLRU());
+        System.out.println("MRU node: " + cacheUsingQueue.peekMRU() + "\n");
 
         cacheUsingQueue.touch(3);
         cacheUsingQueue.print();
-        System.out.println("LRU element: " + cacheUsingQueue.peekLRU());
-        
+        System.out.println("LRU node: " + cacheUsingQueue.peekLRU());
+        System.out.println("MRU node: " + cacheUsingQueue.peekMRU() + "\n");
+
     }
 
 }
 
 /**
  * <p>
- * This implementation implements the LRU cache using a queue,
+ * This implementation implements the LRU/MRU cache using a queue,
  * built on top of a doubly linked list. Most recently
  * used node appears towards the front of the queue
  * and least recently used appears towards the rear.
@@ -129,6 +133,10 @@ class LRUCacheUsingQueue<K> {
         return deque.getLast();
     }
 
+    public K peekMRU() {
+        return deque.getFirst();
+    }
+
     public void print() {
         deque.stream().forEach(value -> System.out.print(value + " "));
         System.out.println();
@@ -161,6 +169,10 @@ class LRUCacheUsingMap<K> {
     }
 
     public K peekLRU() {
+        return null;
+    }
+
+    public K peekMRU() {
         return null;
     }
 
