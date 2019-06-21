@@ -38,17 +38,20 @@ public class LRUCache {
         cacheUsingQueue.touch(3);
         cacheUsingQueue.print();
         System.out.println("LRU element: " + cacheUsingQueue.peekLRU());
+        
     }
 
 }
 
 /**
  * <p>
- * This implementation tests the LRU cache using a queue,
+ * This implementation implements the LRU cache using a queue,
  * built on top of a doubly linked list. Most recently
  * used node appears towards the front of the queue
  * and least recently used appears towards the rear.
  * </p>
+ *
+ * @param <K>
  */
 class LRUCacheUsingQueue<K> {
 
@@ -69,15 +72,14 @@ class LRUCacheUsingQueue<K> {
      */
     private Set<K> referencedKeySet;
 
-
     LRUCacheUsingQueue() {
         this(default_cache_size);
     }
 
-    LRUCacheUsingQueue(int n) {
+    LRUCacheUsingQueue(int size) {
+        this.size = size;
         deque = new LinkedList<>();
         referencedKeySet = new HashSet<>();
-        size = n;
     }
 
     /**
@@ -109,7 +111,9 @@ class LRUCacheUsingQueue<K> {
 
             // Complexity O(n) as per java implementation
             deque.remove(position);
+
         } else {
+
             if (deque.size() == size) {
                 K last = deque.removeLast();
                 referencedKeySet.remove(last);
@@ -121,7 +125,7 @@ class LRUCacheUsingQueue<K> {
 
     }
 
-    public K peekLRU(){
+    public K peekLRU() {
         return deque.getLast();
     }
 
@@ -129,4 +133,38 @@ class LRUCacheUsingQueue<K> {
         deque.stream().forEach(value -> System.out.print(value + " "));
         System.out.println();
     }
+}
+
+/**
+ * <p>
+ * This implementations implements LRU cache using map.
+ * </p>
+ *
+ * @param <K>
+ */
+class LRUCacheUsingMap<K> {
+
+    private static final int default_cache_size = 16;
+
+    // max size of cache
+    private int size;
+
+    public LRUCacheUsingMap() {
+        this(default_cache_size);
+    }
+
+    public LRUCacheUsingMap(int size) {
+        this.size = size;
+    }
+
+    public void touch(K k) {
+    }
+
+    public K peekLRU() {
+        return null;
+    }
+
+    public void print() {
+    }
+
 }
